@@ -49,10 +49,10 @@ function aplicarQuickSort() {
 
 //Contagem: Dado um valor N, conte quantos valores inteiros existem entre 1 (inclusive) e N (inclusive).
 let N = -20;
-let arrayParaConatgem = [1, 2, 5.5, -2, 10, -85];
+let arrayParaContagem = [1, 2, 5.5, -2, 10, -85];
 function contar() {
     let quantidade = 0;
-    for (const elemento of arrayParaConatgem) {
+    for (const elemento of arrayParaContagem) {
         const parteDecimal = Math.trunc(elemento) - elemento;
         if (N > 0 && parteDecimal === 0 && elemento >= 1 && elemento <= N) {
             quantidade += 1;
