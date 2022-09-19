@@ -1,10 +1,15 @@
 // Número é primo: Um número inteiro positivo n é primo se for divisível apenas por 1 e por n
+
+/**
+ * para testar: isPrimo(5)
+ */
+
 function isPrimo(numero) {
     if (numero <= 1) {
         return false;
     }
     for (numeroAtual = 2; numeroAtual < numero; numeroAtual++) {
-        if (numeroAtual % 2 === 0) {
+        if (numero % numeroAtual === 0) {
             return false;
         }
     }
@@ -13,6 +18,11 @@ function isPrimo(numero) {
 
 
 //Somatório: Soma de um conjunto de números.
+
+/**
+ * para testar: somar(1, 10, 13)
+ */
+
 function somar(...numeros) {
     return numeros.reduce((numeroAnterior, numeroAtual) => numeroAnterior + numeroAtual, 0);
 }
@@ -42,8 +52,31 @@ function maximoDivisorComum(numero1, numero2) {
 }
 
 //Ordenação: Ordenar um array usando o método Quicksort
-function aplicarQuickSort() {
+let arrayParaOrdenar = [5, 1, 4, 2, 3];
+function quicksort(start, end) {
+    if (start >= end) return;
 
+    let pivot = partition(start, end);
+
+    quicksort(start, pivot - 1);
+    quicksort(pivot + 1, end);
+}
+function partition(start, end) {
+    let i = start;
+
+    for (var j = start; j < end; j++) {
+        if (arrayParaOrdenar[j] <= arrayParaOrdenar[end]) {
+            swap(i++, j);
+        }
+    }
+    swap(i, end);
+
+    return i;
+}
+function swap(i, j) {
+    let k = arrayParaOrdenar[i];
+    arrayParaOrdenar[i] = arrayParaOrdenar[j];
+    arrayParaOrdenar[j] = k;
 }
 
 
