@@ -29,10 +29,11 @@ function somar(...numeros) {
 
 //Fibonacci: onde N > 1. Os primeiros termos são: 0, 1, 1, 2, 3, 5, 8, 13 …. Cada termo, além dos dois primeiros, é derivado da soma de seus dois antecessores mais próximos
 let arrayFibonacci = [0, 1, 1, 2, 3, 5, 8, 13];
-function aplicarFibonacci() {
+function aplicarFibonacci(arrayFibonacci) {
     const ultimosDoisTermos = arrayFibonacci.slice(-2);
     const somatorioUltimosTermos = somar(...ultimosDoisTermos);
     arrayFibonacci.push(somatorioUltimosTermos);
+    return arrayFibonacci;
 }
 
 
@@ -52,38 +53,54 @@ function maximoDivisorComum(numero1, numero2) {
 }
 
 //Ordenação: Ordenar um array usando o método Quicksort
-let arrayParaOrdenar = [5, 1, 4, 2, 3];
-function quicksort(start, end) {
-    if (start >= end) return;
+let array = [5, 1, 4, 2, 3];
 
-    let pivot = partition(start, end);
+function aplicarQuickSort(array) {
+    debugger;
+    const arrayParaOrdenar = array;
 
-    quicksort(start, pivot - 1);
-    quicksort(pivot + 1, end);
-}
-function partition(start, end) {
-    let i = start;
+    quicksort(0, array.length - 1);
 
-    for (var j = start; j < end; j++) {
-        if (arrayParaOrdenar[j] <= arrayParaOrdenar[end]) {
-            swap(i++, j);
-        }
+    function quicksort(start, end) {
+        if (start >= end) return;
+
+        let pivot = partition(start, end);
+
+        quicksort(start, pivot - 1);
+        quicksort(pivot + 1, end);
     }
-    swap(i, end);
 
-    return i;
+    function partition(start, end) {
+        let i = start;
+
+        for (var j = start; j < end; j++) {
+            if (arrayParaOrdenar[j] <= arrayParaOrdenar[end]) {
+                swap(i++, j);
+            }
+        }
+        swap(i, end);
+
+        return i;
+    }
+
+    function swap(i, j) {
+        let k = arrayParaOrdenar[i];
+        arrayParaOrdenar[i] = arrayParaOrdenar[j];
+        arrayParaOrdenar[j] = k;
+    }
+
+    return arrayParaOrdenar;
 }
-function swap(i, j) {
-    let k = arrayParaOrdenar[i];
-    arrayParaOrdenar[i] = arrayParaOrdenar[j];
-    arrayParaOrdenar[j] = k;
-}
+
+
+
 
 
 //Contagem: Dado um valor N, conte quantos valores inteiros existem entre 1 (inclusive) e N (inclusive).
 let N = -20;
 let arrayParaContagem = [1, 2, 5.5, -2, 10, -85];
-function contar() {
+
+function contar(N, arrayParaContagem) {
     let quantidade = 0;
     for (const elemento of arrayParaContagem) {
         const parteDecimal = Math.trunc(elemento) - elemento;
@@ -98,3 +115,12 @@ function contar() {
 
     return quantidade;
 }
+
+module.exports = {
+    isPrimo,
+    somar,
+    aplicarFibonacci,
+    maximoDivisorComum,
+    aplicarQuickSort,
+    contar
+};
